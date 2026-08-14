@@ -4,7 +4,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, on
 import { useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 
-
 export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [currentUser, setCurrentUser] = useState(null);
@@ -16,9 +15,9 @@ export const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const logout = () => {
-        return signOut(auth)
+        return signOut(auth);
     }
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setCurrentUser(user);

@@ -1,29 +1,40 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { toast } from "react-hot-toast"; // 1. Добавили импорт toast
 
 export default function Navbar() {
-
   const [linkMenu, setLinkMenu] = useState(false);
   const toggleMenu = () => {
-    setLinkMenu((prev) => !prev)
-  }
+    setLinkMenu((prev) => !prev);
+  };
 
   const [darkMode, setDarkMode] = useState(false);
   const toggleTheme = () => {
-    const isDark = !darkMode
-    setDarkMode(isDark)
+    const isDark = !darkMode;
+    setDarkMode(isDark);
     if (isDark) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove('dark');
     }
-  }
+  };
 
   const { currentUser, loading, logout } = useContext(AuthContext);
 
+  // 2. Создаем хэндлер для выхода
+  const handleLogout = async () => {
+    try {
+      setLinkMenu(false); // Закрываем выпадающее меню
+      await logout(); // Ждем завершения сессии в Firebase
+      toast.success("Logged out successfully."); // Показываем тоаст
+    } catch (error) {
+      toast.error("Failed to log out.");
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
+
   return (
     <nav className="
     flex justify-between items-center
@@ -73,7 +84,7 @@ export default function Navbar() {
             flex flex-col gap-1 z-50">
               {currentUser ? (
                 <button
-                  onClick={logout}
+                  onClick={handleLogout} 
                   className="
                   w-full text-left px-4 py-2.5
                   text-sm font-medium text-red-500
@@ -83,6 +94,7 @@ export default function Navbar() {
                 <>
                   <NavLink
                     to="/register"
+                    onClick={() => setLinkMenu(false)}
                     className="
                     w-full text-left px-4 py-2.5
                     text-sm font-medium
@@ -92,6 +104,7 @@ export default function Navbar() {
 
                   <NavLink
                     to="/login"
+                    onClick={() => setLinkMenu(false)}
                     className="
                     w-full text-left px-4 py-2.5
                     text-sm font-medium
@@ -106,4 +119,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-};
+}

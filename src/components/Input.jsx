@@ -8,7 +8,7 @@ export default function Input({ label, error, className = '', ...props }) {
             )}
             <input
                 {...props}
-                className={`w-full rounded-lg border border-gray-700 bg-transparent px-4 py-3 text-white outline-none transition-colors focus:border-cyan-500 ${error ? 'border-red-500 focus:border-red-500' : ''} ${className}`} />
+                className={`w-full rounded-lg border border-gray-700 bg-transparent px-4 py-3 outline-none transition-colors focus:border-cyan-500 ${error ? 'border-red-500 focus:border-red-500' : ''} ${className}`} />
             {error && (
                 <span className="text-xs text-red-400 font-medium">{error}</span>
             )}
