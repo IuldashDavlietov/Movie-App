@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, NavLink } from "react-router-dom";
-import { toast } from "react-hot-toast"; // 1. Добавили импорт toast
+import { toast } from "react-hot-toast";
 
 export default function Navbar() {
   const [linkMenu, setLinkMenu] = useState(false);
@@ -22,13 +22,13 @@ export default function Navbar() {
 
   const { currentUser, loading, logout } = useContext(AuthContext);
 
-  // 2. Создаем хэндлер для выхода
   const handleLogout = async () => {
     try {
-      setLinkMenu(false); // Закрываем выпадающее меню
-      await logout(); // Ждем завершения сессии в Firebase
-      toast.success("Logged out successfully."); // Показываем тоаст
+      setLinkMenu(false);
+      await logout();
+      toast.success("Logged out successfully.");
     } catch (error) {
+      console.error('Logout error', error)
       toast.error("Failed to log out.");
     }
   };
@@ -84,7 +84,7 @@ export default function Navbar() {
             flex flex-col gap-1 z-50">
               {currentUser ? (
                 <button
-                  onClick={handleLogout} 
+                  onClick={handleLogout}
                   className="
                   w-full text-left px-4 py-2.5
                   text-sm font-medium text-red-500
