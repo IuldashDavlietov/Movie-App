@@ -4,9 +4,8 @@ import { MovieCard } from '../components/MovieCard';
 
 export default function Main() {
     const { movies, loading } = useMovie();
-
     return (
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8 relative">
             <SearchBar />
             {loading ? (
                 <div className="text-center text-cyan-400 py-12 font-medium">

@@ -10,11 +10,15 @@ const movieApi = axios.create({
 export const getPopularMovies = async () => {
   const response = await movieApi.get('/movie/popular');
   return response.data.results
-}
+};
 
 export const searchMovies = async (query) => {
   const response = await movieApi.get('search/movie',
     { params: { query }, })
   return response.data.results
-}
+};
 
+export const getMovieDetails = async(id)=> {
+  const response = await movieApi.get(`/movie/${id}`)
+  return response.data
+};
