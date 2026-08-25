@@ -18,7 +18,12 @@ export const searchMovies = async (query) => {
   return response.data.results
 };
 
-export const getMovieDetails = async(id)=> {
+export const getMovieDetails = async (id) => {
   const response = await movieApi.get(`/movie/${id}`)
   return response.data
 };
+
+export const getMovieVideos = async (id) => {
+  const response = await movieApi.get(`/movie/${id}/videos`)
+  return response.data.results
+}
