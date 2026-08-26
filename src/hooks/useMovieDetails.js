@@ -30,7 +30,7 @@ export const useMovieDetails = (movieId) => {
         setTrailerKey(trailer?.key || fallbackVideo?.key || null);
       } catch (err) {
         console.error('Error fetching movie details:', err);
-        setError('Failed to fetch movie details.');
+        setError('Movie not found...');
       } finally {
         setLoading(false);
       }

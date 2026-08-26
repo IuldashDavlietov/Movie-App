@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { Link } from 'react-router-dom';
+
 
 const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/w500';
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/500x750?text=No+Poster';
@@ -14,18 +16,17 @@ export const MovieCard = ({ movie }) => {
   const rating = vote_average ? vote_average.toFixed(1) : 'N/A';
 
   return (
+    <Link to={`/details/${movie.id}`} className='block'>
     <article 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative bg-gray-800/60 rounded-xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 flex flex-col group"
-    >
+      className="relative bg-gray-800/60 rounded-xl overflow-hidden border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 flex flex-col group" >
       <div className="relative aspect-2/3 w-full bg-gray-900 overflow-hidden rounded-xl">
         <img
           src={posterUrl}
           alt={title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+          loading="lazy"/>
         
         <span className="absolute top-3 right-3 bg-black/70 text-yellow-400 px-2 py-1 rounded-md text-xs font-bold border border-yellow-400/20 z-10 transition-opacity duration-300 group-hover:opacity-0">
           ★ {rating}
@@ -58,5 +59,6 @@ export const MovieCard = ({ movie }) => {
         <p className="text-sm text-gray-400">{releaseYear}</p>
       </div>
     </article>
+    </Link>
   );
 };
