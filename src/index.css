@@ -3,7 +3,9 @@
 body {
   background-color: #f8fafc;
   color: #0f172a;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -12,9 +14,8 @@ html.dark body {
   background-color: #020617;
   color: #f8fafc;
 }
-@layer base{
-  button{
+@layer base {
+  button {
     cursor: pointer;
   }
 }
-

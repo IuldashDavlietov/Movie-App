@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { getMovieDetails, getMovieVideos } from '../services/movieApi';
+import { useState, useEffect } from "react";
+import { getMovieDetails, getMovieVideos } from "../services/movieApi";
 
 export const useMovieDetails = (movieId) => {
   const [movie, setMovie] = useState(null);
@@ -23,14 +23,16 @@ export const useMovieDetails = (movieId) => {
         setMovie(detailsData);
 
         const trailer = videosData?.find(
-          (video) => video.site === 'YouTube' && video.type === 'Trailer'
+          (video) => video.site === "YouTube" && video.type === "Trailer",
         );
-        const fallbackVideo = videosData?.find((video) => video.site === 'YouTube');
+        const fallbackVideo = videosData?.find(
+          (video) => video.site === "YouTube",
+        );
 
         setTrailerKey(trailer?.key || fallbackVideo?.key || null);
       } catch (err) {
-        console.error('Error fetching movie details:', err);
-        setError('Movie not found...');
+        console.error("Error fetching movie details:", err);
+        setError("Movie not found...");
       } finally {
         setLoading(false);
       }

@@ -8,12 +8,12 @@ export default function Login() {
 
   const handleLogin = async ({ email, password }) => {
     await login(email, password);
-    toast.success('Successfully logged in!');
+    toast.success("Successfully logged in!");
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-6" >Sign In</h1>
+      <h1 className="text-2xl font-bold mb-6">Sign In</h1>
       <AuthForm isRegister={false} onSubmit={handleLogin} />
     </div>
   );
