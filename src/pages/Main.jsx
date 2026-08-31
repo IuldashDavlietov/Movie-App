@@ -1,12 +1,17 @@
 import { useMovie } from '../hooks/useMovie';
 import { SearchBar } from '../components/SearchBar';
 import { MovieCard } from '../components/MovieCard';
+import SortBar from '../components/SortBar';
 
 export default function Main() {
-    const { movies, loading } = useMovie();
+    const { movies, loading, sortBy, setSortBy } = useMovie();
+
     return (
         <main className="container mx-auto px-4 py-8 relative">
-            <SearchBar />
+            <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
+                <SearchBar />
+                <SortBar sortBy = {sortBy} onSortChange= {setSortBy} />
+            </div>
             {loading ? (
                 <div className="text-center text-cyan-400 py-12 font-medium">
                     Loading movies...
@@ -19,7 +24,7 @@ export default function Main() {
                 </div>
             ) : (
                 <div className="text-center text-gray-400 py-12">
-                    No movie found... 
+                    No movie found...
                 </div>
             )}
         </main>

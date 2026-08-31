@@ -10,7 +10,6 @@ export const SearchBar = () => {
         e.preventDefault();
         handleSearch(query);
     };
-
     return (
         <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-xl mx-auto my-6">
             <Input
@@ -18,6 +17,7 @@ export const SearchBar = () => {
                 placeholder="Search for movies..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)} />
+                 
             <button
                 type="submit"
                 className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-lg transition-colors" >
